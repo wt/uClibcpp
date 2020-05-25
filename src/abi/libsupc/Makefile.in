@@ -5,7 +5,7 @@ OBJS-OMIT = $(filter new_op%.o del_op%.o pure.o new_handler.o eh_alloc.o eh_glob
 libsupc-$(IMPORT_LIBSUP) := $(filter-out $(OBJS-OMIT),$(OBJS))
 
 LIBSUP_VAR := $(call variablify,$(LIBSUP))
-LIBSUP_DEP :=$(LIBSUPC_OUT).$(LIBSUP_VAR).dep
+LIBSUP_DEP := $(LIBSUPC_OUT)libsupc++.dep
 
 ifeq ($(filter $(noconfig_targets),$(MAKECMDGOALS)),)
 -include $(LIBSUP_DEP)
@@ -21,4 +21,4 @@ $(LIBSUP_DEP): $(LIBSUP) $(LIBSUPC_OUT)Makefile.in
 
 CLEAN_src/abi/libsupc: ;
 DISTCLEAN_src/abi/libsupc:
-	$(do_rm) $(addprefix $(LIBSUPC_OUT), .*dep *.o)
+	$(do_rm) $(addprefix $(LIBSUPC_OUT), libsupc++.dep .*dep *.o)
